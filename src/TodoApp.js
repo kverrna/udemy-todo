@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import devToolsEnhencer from 'remote-redux-devtools';
 
 import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList';
 import rootReducer from './reducers';
 
 const store = createStore(rootReducer, devToolsEnhencer());
@@ -16,6 +17,7 @@ export default class TodoApp extends React.Component {
       <Provider store={store}>
         <View style={{ margin: 50 }}>
           <TodoForm />
+          <TodoList />
         </View>
       </Provider>
     );
