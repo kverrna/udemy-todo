@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Button } from 'react-native';
+import { connect } from 'react-redux';
 import Input from './Input';
+import { addTodo } from '../actions';
 
-export default class TodoForm extends React.Component {
+class TodoForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +18,12 @@ export default class TodoForm extends React.Component {
     });
   }
 
+  onPress() {
+    const { dispacthAddTodo } = this.props;
+    const { text } = this.state;
+    dispacthAddTodo(text);
+  }
+
   render() {
     const { text } = this.state;
     return (
@@ -27,9 +35,20 @@ export default class TodoForm extends React.Component {
           />
         </View>
         <View>
-          <Button title="add" onPress={() => {}} />
+          <Button
+            title="add"
+            onPress={() => {
+              this.onPress();
+            }}
+          />
         </View>
       </View>
     );
   }
 }
+
+// const mapDispatchToProps = dispatch => ({
+//   dispacthAddTodo: text => dispatch(addTodo(text)),
+// });
+// export default connect(null, mapDispatchToProps)(TodoForm);
+export default connect(null, { dispacthAddTodo: addTodo })(TodoForm);
