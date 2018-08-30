@@ -4,8 +4,8 @@ import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 const TodoList = ({ todos }) => (
-  <View style={{ margin: 15 }}>
-    {todos.map(todo => <Text key={todo.id}>{todo.text}</Text>)}
+  <View style={{ margin: 1, padding: 10 }}>
+    {todos.map(todo => <Text key={todo.id} style={{ padding: 10, backgroundColor: '#ff1', margin: 2 }}>{todo.text}</Text>)}
   </View>
 );
 const mapStateToProps = (state) => {
