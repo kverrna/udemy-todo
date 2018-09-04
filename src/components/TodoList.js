@@ -2,13 +2,14 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 import { connect } from 'react-redux';
+import { toggleTodo } from '../actions';
 
-const TodoList = ({ todos }) => (
+const TodoList = ({ todos, dispatchToggleTodo }) => (
   <View style={{ margin: 1, padding: 10 }}>
 
     {todos.map(todo => (
-      <TouchableOpacity onPress={() => {}}>
-        <Text key={todo.id} style={{ padding: 10, backgroundColor: '#ff1', margin: 2 }}>
+      <TouchableOpacity onPress={() => { dispatchToggleTodo(todo.id); }}>
+        <Text key={todo.id} style={[{ padding: 10, margin: 2 }, todo.done ? { backgroundColor: '#33e' } : { backgroundColor: '#fff' }]}>
           {todo.text}
         </Text>
       </TouchableOpacity>
@@ -19,4 +20,4 @@ const mapStateToProps = (state) => {
   const { todos } = state;
   return { todos };
 };
-export default connect(mapStateToProps)(TodoList);
+export default connect(mapStateToProps, { dispatchToggleTodo: toggleTodo })(TodoList);
